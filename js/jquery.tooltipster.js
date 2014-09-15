@@ -759,6 +759,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 				
 					var windowLeft = $(window).scrollLeft();
 					
+					self.tooltipArrowReposition = 0;
+					
 					// if the tooltip goes off the left side of the screen, line it up with the left side of the window
 					if((myLeft - windowLeft) < 0) {
 						var arrowReposition = myLeft - windowLeft;
@@ -1089,6 +1091,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 							case 'reposition':
 								self.positionTooltip();
 								break;
+							
+							case 'offsetX':
+                                self.options.offsetX = args[1];
+                                self.positionTooltip();
+                                break;
 							
 							case 'show':
 								self.showTooltipNow();
