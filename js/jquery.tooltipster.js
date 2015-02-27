@@ -224,9 +224,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 					$('.tooltipstered').not(self.$el).each(function(i,el) {
 						
 						// we have to use the public methods here
-						var $el = $(el),
-							s = $el[pluginName]('status'),
-							ac = $el[pluginName]('option', 'autoClose');
+						var $el = $(el), s, ac;
+
+                        if (! $(el).data('tooltipster')) {
+                            console.log('Found a .tooltipstered element with no tooltipster data (this happens in RAMP on IE9), skipping it');
+                            console.log(el);
+                            console.log(el.innerHTML);
+                            return;
+                        }
+
+                        s = $el[pluginName]('status');
+                        ac = $el[pluginName]('option', 'autoClose');
 						
 						if (s !== 'hidden' && s !== 'disappearing' && ac) {
 							$el[pluginName]('hide');
